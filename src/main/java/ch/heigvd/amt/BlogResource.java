@@ -41,12 +41,13 @@ public class BlogResource {
     @Path("/posts/")
     @POST
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance save(@FormParam("title") String title, @FormParam("content") String content) {
+    public TemplateInstance save(@FormParam("author") String author, @FormParam("title") String title, @FormParam("content") String content) {
         var post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setSlug(title.toLowerCase().replace(" ", "-"));
         post.setDate(java.time.Instant.now());
+        post.setAuthor(blogService.getOrCreateAuthor(author));
         blogService.createPost(post);
         return created.instance();
     }

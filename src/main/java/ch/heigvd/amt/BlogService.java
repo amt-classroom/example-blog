@@ -16,12 +16,15 @@ public class BlogService {
 
     @Transactional
     public Author getOrCreateAuthor(String name) {
-        Author author = em.createQuery("SELECT a FROM Author a WHERE a.name = :name", Author.class)
+        Author author;
+        List<Author> list = em.createQuery("SELECT a FROM Author a WHERE a.name = :name", Author.class)
                 .setParameter("name", name)
-                .getSingleResult();
-        if (author == null) {
+                .getResultList();
+        if (list.isEmpty()) {
             author = new Author(name);
             em.persist(author);
+        } else {
+            author = list.get(0);
         }
         return author;
     }
