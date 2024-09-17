@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/example-presentation .
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/example-blog .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/example-presentation
+# docker run -i --rm -p 8080:8080 quarkus/example-blog
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.8
